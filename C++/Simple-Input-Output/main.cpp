@@ -12,5 +12,3 @@ int main()
     cout << "Hello " << name << "!" << " Nice to meet you!" << endl; // Prints Hello <name>! Nice to meet you!
 
 }
-
-// Compile Command: g++ main.cpp -o main && ./main
