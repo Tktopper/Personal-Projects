@@ -11,7 +11,7 @@ int main()
     int age; // Creates a variable called age
     string name; // Creates a variable called name
 
-    cout << "What is your name? " << endl; // Prints What is your name?
+    cout << "What is your First name? " << endl; // Prints What is your name?
             cin >> name; // Gets the user's name
         cout << "What year were you born? " << endl; // Prints What year were you born?
             cin >> year; // Gets the user's birth year
