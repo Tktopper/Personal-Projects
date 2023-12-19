@@ -5,65 +5,53 @@
 using namespace std;
 
 // Function to convert letter grade to numeric value
-float letterToNumericGrade(char letterGrade) {
-    switch (letterGrade) {
-        case 'A':
-        case 'a':
-            return 4.0;
-        case 'A-':
-        case 'a-':
-            return 3.67;
-        case 'B+':
-        case 'b+':
-            return 3.33;        
-        case 'B':
-        case 'b':
-            return 3.0;
-        case 'B-':
-        case 'b-':
-            return 2.67;
-        case 'C+':
-        case 'c+':
-            return 3.33;
-        case 'C':
-        case 'c':
-            return 2.0;
-        case 'D':
-        case 'd':
-            return 1.0;
-        case 'F':
-        case 'f':
-            return 0.0;
-        default:
-            return -1.0; // Invalid grade
+float letterToNumericGrade(const string& letterGrade) {
+    if (letterGrade == "A" || letterGrade == "a") {
+        return 4.0;
+    } else if (letterGrade == "A-" || letterGrade == "a-") {
+        return 3.67;
+    } else if (letterGrade == "B+" || letterGrade == "b+") {
+        return 3.33;
+    } else if (letterGrade == "B" || letterGrade == "b") {
+        return 3.0;
+    } else if (letterGrade == "B-" || letterGrade == "b-") {
+        return 2.67;
+    } else if (letterGrade == "C+" || letterGrade == "c+") {
+        return 2.33;
+    } else if (letterGrade == "C" || letterGrade == "c") {
+        return 2.0;
+    } else if (letterGrade == "D" || letterGrade == "d") {
+        return 1.0;
+    } else if (letterGrade == "F" || letterGrade == "f") {
+        return 0.0;
+    } else {
+        return -1.0; // Invalid grade
     }
 }
 
-int main()
-{
+int main() {
     int n;
-    float gpa, result;
-    int grade;
-    cout << "Enter the number of classes to calculate GPA for: " << endl;
+    cout << "Enter the number of classes to calculate GPA for: ";
     cin >> n;
-    string array[n];
-    
-    for(int i=0; i < n ; i++)
-    {
-        cout << "Enter Class Letter grade: " << (i+1) << ": " << endl;
-        cin >> array[i];
+    string* grades = new string[n]; // Use dynamic memory allocation for letter grades
+
+    for (int i = 0; i < n; i++) {
+        cout << "Enter Class Letter grade " << (i + 1) << ": ";
+        cin >> grades[i];
     }
 
-        float totalGPA = 0.0;
-    for(int i = 0; i < n; i++)
-    {
-        float grade = letterToNumericGrade(array[i][0]);
+    float totalGPA = 0.0;
+    for (int i = 0; i < n; i++) {
+        float grade = letterToNumericGrade(grades[i]);
         if (grade == -1.0) {
             cout << "Invalid grade entered for class " << (i + 1) << ". Exiting program." << endl;
+            delete[] grades; // Free the dynamically allocated memory before exiting
             return 1;
         }
         totalGPA += grade;
     }
+
+    delete[] grades; // Free the dynamically allocated memory when done
 
     float cGPA = totalGPA / n;
 
@@ -71,10 +59,4 @@ int main()
     cout << "Your cumulative GPA (cGPA) is: " << cGPA << endl;
 
     return 0;
-
-
-
-
-
-
 }
